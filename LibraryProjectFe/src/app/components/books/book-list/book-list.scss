@@ -1,0 +1,51 @@
+.book-list-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.book-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.filter-input,
+.category-filter {
+  width: 100%;
+  max-width: 320px;
+}
+
+.category-filter {
+  min-height: 2.5rem;
+  border: 1px solid var(--p-inputtext-border-color);
+  border-radius: var(--p-inputtext-border-radius);
+  padding: 0 0.75rem;
+  background: var(--p-inputtext-background);
+  color: var(--p-inputtext-color);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+:host ::ng-deep {
+  .p-datatable .p-datatable-tbody > tr {
+    transition: background 0.15s;
+  }
+}

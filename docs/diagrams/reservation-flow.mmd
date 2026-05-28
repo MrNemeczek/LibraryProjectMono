@@ -1,0 +1,39 @@
+sequenceDiagram
+    actor Reader as Czytelnik
+    participant FE as Angular
+    participant API as ReservationsController
+    participant RS as ReservationService
+    participant BR as BookRepository
+    participant BCR as BookCopyRepository
+    participant RR as ReservationRepository
+    participant DB as SQL Server
+
+    Reader->>FE: Wybiera ksiazke i tworzy rezerwacje
+    FE->>API: POST /api/reservations z tokenem JWT
+    API->>RS: CreateAsync(request, userId)
+    RS->>BR: Pobierz ksiazke
+    BR->>DB: SELECT Books
+    DB-->>BR: Book
+    RS->>RR: Sprawdz aktywna rezerwacje uzytkownika
+    RR->>DB: SELECT Reservations
+    DB-->>RR: Wynik
+    RS->>BCR: Pobierz dostepny egzemplarz
+    BCR->>DB: SELECT BookCopies WHERE Status = Available
+    DB-->>BCR: BookCopy
+    RS->>RS: Utworz Reservation i ustaw BookCopy.Reserved
+    RS->>RR: Dodaj rezerwacje
+    RS->>DB: SaveChanges
+    DB-->>RS: Zapisano
+    RS-->>API: ReservationResponse
+    API-->>FE: 201 Created
+    FE-->>Reader: Potwierdzenie rezerwacji
+
+    actor Librarian as Bibliotekarz
+    Librarian->>FE: Realizuje rezerwacje
+    FE->>API: PUT /api/reservations/{id}/fulfill
+    API->>RS: FulfillAsync(id)
+    RS->>RR: Pobierz rezerwacje
+    RS->>BCR: Pobierz dostepny egzemplarz
+    RS->>RS: Reservation.Fulfill(), BookCopy.Borrow(), Loan.Create()
+    RS->>DB: SaveChanges
+    API-->>FE: 204 No Content

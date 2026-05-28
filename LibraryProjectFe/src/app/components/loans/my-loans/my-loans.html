@@ -1,0 +1,42 @@
+<div class="loans-page">
+  <h1>Moje wypożyczenia</h1>
+
+  <p-table
+    [value]="loans"
+    [paginator]="true"
+    [rows]="pageSize"
+    [totalRecords]="totalCount"
+    (onPage)="onPageChange($event)"
+    [loading]="loading"
+    [rowsPerPageOptions]="[10, 20, 50]"
+    dataKey="id"
+    styleClass="p-datatable-striped"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Nr egzemplarza</th>
+        <th>Data wypożyczenia</th>
+        <th>Data zwrotu</th>
+        <th>Status</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-loan>
+      <tr>
+        <td>{{ loan.bookCopyInventoryNumber }}</td>
+        <td>{{ loan.loanDate }}</td>
+        <td>{{ loan.returnDate || '-' }}</td>
+        <td>
+          <p-tag
+            [value]="getStatusLabel(loan.status)"
+            [severity]="getStatusSeverity(loan.status)"
+          />
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="4" class="text-center">Brak wypożyczeń.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

@@ -1,0 +1,112 @@
+.book-form-page {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--p-primary-color);
+  text-decoration: none;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.loading-text {
+  text-align: center;
+  padding: 2rem;
+  color: var(--p-text-muted-color);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+
+  label {
+    font-weight: 500;
+    font-size: 0.875rem;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.existing-copies {
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  background: var(--p-surface-100);
+  border-radius: var(--p-border-radius-md);
+}
+
+.subsection-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--p-text-muted-color);
+  margin-bottom: 0.5rem;
+}
+
+.copy-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.copy-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.5rem;
+  background: var(--p-surface-0);
+  border: 1px solid var(--p-content-border-color);
+  border-radius: var(--p-border-radius-sm);
+
+  code {
+    font-size: 0.85rem;
+  }
+}
+
+.copy-status-tag {
+  font-size: 0.75rem;
+}
+
+.inventory-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.inventory-input {
+  flex: 1;
+}
+
+.added-inventory-list {
+  margin-top: 0.75rem;
+}
+
+.inventory-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0;
+}
+
+.inventory-item-value {
+  flex: 1;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.5rem;
+  background: var(--p-surface-100);
+  border-radius: var(--p-border-radius-sm);
+}

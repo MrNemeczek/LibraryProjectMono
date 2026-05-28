@@ -1,0 +1,52 @@
+flowchart TB
+    subgraph Client["Warstwa prezentacji"]
+        Angular["Angular 21 SPA"]
+        Components["Komponenty: katalog, logowanie, rezerwacje, wypozyczenia"]
+        Guards["Guards i interceptor JWT"]
+        ServicesFe["Serwisy HTTP frontendu"]
+    end
+
+    subgraph Api["Warstwa API"]
+        Controllers["Kontrolery REST ASP.NET Core"]
+        Auth["Autoryzacja JWT i role"]
+        Middleware["Middleware obslugi wyjatkow"]
+        OpenApi["OpenAPI / Scalar"]
+    end
+
+    subgraph Application["Warstwa logiki biznesowej"]
+        AppServices["Serwisy aplikacyjne"]
+        Contracts["DTO, requesty, response'y"]
+        RepoInterfaces["Interfejsy repozytoriow i UnitOfWork"]
+    end
+
+    subgraph Domain["Warstwa domenowa"]
+        Entities["Encje: User, Book, BookCopy, Reservation, Loan, Category"]
+        Rules["Reguly domenowe i walidacje"]
+        ValueObjects["Value Object: Isbn"]
+    end
+
+    subgraph Infrastructure["Warstwa danych i infrastruktury"]
+        EF["Entity Framework Core"]
+        Repositories["Repozytoria"]
+        Security["Hasher hasel i generator JWT"]
+        Migrations["Migracje EF Core"]
+    end
+
+    Database[("SQL Server")]
+
+    Angular --> Components
+    Components --> ServicesFe
+    ServicesFe --> Controllers
+    Guards --> ServicesFe
+    Controllers --> Auth
+    Controllers --> AppServices
+    Controllers --> Middleware
+    AppServices --> RepoInterfaces
+    AppServices --> Entities
+    Entities --> Rules
+    Entities --> ValueObjects
+    RepoInterfaces --> Repositories
+    Repositories --> EF
+    EF --> Database
+    Security --> Auth
+    Migrations --> Database

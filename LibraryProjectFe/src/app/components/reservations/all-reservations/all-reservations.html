@@ -1,0 +1,93 @@
+<p-toast />
+
+<div class="reservations-page">
+  <h1>Wszystkie rezerwacje</h1>
+
+  <p-card>
+    <div class="toolbar">
+      <p-iconfield>
+        <p-inputicon styleClass="pi pi-hashtag" />
+        <input
+          pInputText
+          type="number"
+          min="1"
+          [(ngModel)]="reservationIdFilter"
+          (input)="onFiltersChange()"
+          placeholder="ID rezerwacji"
+          class="filter-input"
+        />
+      </p-iconfield>
+
+      <p-iconfield>
+        <p-inputicon styleClass="pi pi-user" />
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="readerNameFilter"
+          (input)="onFiltersChange()"
+          placeholder="Imię i nazwisko czytelnika"
+          class="filter-input"
+        />
+      </p-iconfield>
+
+      <p-button severity="secondary" label="Wyczyść" (click)="clearFilters()" />
+    </div>
+
+    <p-table
+      [value]="reservations"
+      [paginator]="true"
+      [lazy]="true"
+      [first]="(page - 1) * pageSize"
+      [rows]="pageSize"
+      [totalRecords]="totalCount"
+      (onPage)="onPageChange($event)"
+      [loading]="loading"
+      [rowsPerPageOptions]="[10, 20, 50]"
+      dataKey="id"
+      styleClass="p-datatable-striped"
+    >
+      <ng-template #header>
+        <tr>
+          <th>ID rezerwacji</th>
+          <th>Czytelnik</th>
+          <th>Książka</th>
+          <th>Data rezerwacji</th>
+          <th>Termin odbioru</th>
+          <th>Status</th>
+          <th style="width: 100px">Akcje</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-reservation>
+        <tr>
+          <td>#{{ reservation.id }}</td>
+          <td>{{ getReaderName(reservation) }}</td>
+          <td>{{ reservation.bookTitle }}</td>
+          <td>{{ reservation.reservationDate }}</td>
+          <td>{{ reservation.pickupDeadline || '-' }}</td>
+          <td>
+            <p-tag
+              [value]="getStatusLabel(reservation.status)"
+              [severity]="getStatusSeverity(reservation.status)"
+            />
+          </td>
+          <td>
+            @if (reservation.status === 'Active') {
+              <p-button
+                icon="pi pi-check"
+                severity="success"
+                size="small"
+                (click)="fulfillReservation(reservation.id)"
+                pTooltip="Zrealizuj rezerwację"
+              />
+            }
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template #emptymessage>
+        <tr>
+          <td colspan="7" class="text-center">Brak rezerwacji.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>

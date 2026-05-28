@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="vitest tests" tests="126" failures="0" errors="0" time="6.4152426">
+    <testsuite name="src/app/app.spec.ts" timestamp="2026-05-28T17:06:20.890Z" hostname="Jeremiasz" tests="3" failures="0" errors="0" skipped="0" time="0.0972818">
+        <testcase classname="src/app/app.spec.ts" name="App &gt; should create the app" time="0.0114812">
+        </testcase>
+        <testcase classname="src/app/app.spec.ts" name="App &gt; should show navbar when user is logged in" time="0.0801079">
+        </testcase>
+        <testcase classname="src/app/app.spec.ts" name="App &gt; should hide navbar when user is not logged in" time="0.0052677">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/guards/auth.guard.spec.ts" timestamp="2026-05-28T17:06:20.892Z" hostname="Jeremiasz" tests="2" failures="0" errors="0" skipped="0" time="0.0031894">
+        <testcase classname="src/app/guards/auth.guard.spec.ts" name="authGuard &gt; should return true when user is logged in" time="0.0015134">
+        </testcase>
+        <testcase classname="src/app/guards/auth.guard.spec.ts" name="authGuard &gt; should redirect to /login when user is not logged in" time="0.0016012">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/guards/role.guard.spec.ts" timestamp="2026-05-28T17:06:20.893Z" hostname="Jeremiasz" tests="3" failures="0" errors="0" skipped="0" time="0.005454">
+        <testcase classname="src/app/guards/role.guard.spec.ts" name="roleGuard &gt; should return true when logged in and has required role" time="0.0021025">
+        </testcase>
+        <testcase classname="src/app/guards/role.guard.spec.ts" name="roleGuard &gt; should redirect to /books when logged in but wrong role" time="0.0017139">
+        </testcase>
+        <testcase classname="src/app/guards/role.guard.spec.ts" name="roleGuard &gt; should redirect to /books when not logged in" time="0.0014463">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/services/auth.service.spec.ts" timestamp="2026-05-28T17:06:20.894Z" hostname="Jeremiasz" tests="18" failures="0" errors="0" skipped="0" time="0.0361875">
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; should start with null user when nothing stored" time="0.0022367">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; should restore user from localStorage on init" time="0.0023795">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; should clear stored user and token on init when token is expired" time="0.0016419">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; login &gt; should store token, user, and update signal on success" time="0.0022044">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; logout &gt; should clear localStorage and signal" time="0.0017809">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; isLoggedIn &gt; should return true when token is valid" time="0.0015726">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; isLoggedIn &gt; should return false when no token" time="0.0013814">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; isLoggedIn &gt; should return false and clear session when token is expired" time="0.0017895">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; isLoggedIn &gt; should return false and clear session when token is invalid" time="0.0015861">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; getToken &gt; should return token from localStorage" time="0.0014511">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; getToken &gt; should return null when no token stored" time="0.0014064">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; hasRole &gt; should return true when user has the role" time="0.0042016">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; hasRole &gt; should return false when user has different role" time="0.0012038">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; hasRole &gt; should return false when no user" time="0.0012937">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; hasAnyRole &gt; should return true when user has one of the roles" time="0.0016793">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; hasAnyRole &gt; should return false when user has none of the roles" time="0.003067">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; hasAnyRole &gt; should return false when no user" time="0.0033317">
+        </testcase>
+        <testcase classname="src/app/services/auth.service.spec.ts" name="AuthService &gt; private getStoredUser &gt; should return null for invalid JSON" time="0.0015592">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/components/navbar/navbar.spec.ts" timestamp="2026-05-28T17:06:20.898Z" hostname="Jeremiasz" tests="7" failures="0" errors="0" skipped="0" time="0.0764433">
+        <testcase classname="src/app/components/navbar/navbar.spec.ts" name="Navbar &gt; getters &gt; should delegate isLibrarianOrAdmin to authService.hasAnyRole" time="0.0087818">
+        </testcase>
+        <testcase classname="src/app/components/navbar/navbar.spec.ts" name="Navbar &gt; getters &gt; should delegate isLoggedIn to authService.isLoggedIn" time="0.0079028">
+        </testcase>
+        <testcase classname="src/app/components/navbar/navbar.spec.ts" name="Navbar &gt; getters &gt; should return empty string for userName when no user" time="0.007539">
+        </testcase>
+        <testcase classname="src/app/components/navbar/navbar.spec.ts" name="Navbar &gt; menu &gt; should start closed" time="0.0140054">
+        </testcase>
+        <testcase classname="src/app/components/navbar/navbar.spec.ts" name="Navbar &gt; menu &gt; should toggle menuOpen" time="0.006994">
+        </testcase>
+        <testcase classname="src/app/components/navbar/navbar.spec.ts" name="Navbar &gt; menu &gt; should close menu" time="0.0228288">
+        </testcase>
+        <testcase classname="src/app/components/navbar/navbar.spec.ts" name="Navbar &gt; logout &gt; should call authService.logout, close menu, and navigate to /books" time="0.0079862">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/components/login/login.spec.ts" timestamp="2026-05-28T17:06:20.900Z" hostname="Jeremiasz" tests="11" failures="0" errors="0" skipped="0" time="1.0910719">
+        <testcase classname="src/app/components/login/login.spec.ts" name="Login &gt; form validation &gt; should be invalid when empty" time="0.3987999">
+        </testcase>
+        <testcase classname="src/app/components/login/login.spec.ts" name="Login &gt; form validation &gt; should validate email as required" time="0.1082007">
+        </testcase>
+        <testcase classname="src/app/components/login/login.spec.ts" name="Login &gt; form validation &gt; should validate email format" time="0.06339">
+        </testcase>
+        <testcase classname="src/app/components/login/login.spec.ts" name="Login &gt; form validation &gt; should accept valid email" time="0.0461448">
+        </testcase>
+        <testcase classname="src/app/components/login/login.spec.ts" name="Login &gt; form validation &gt; should validate password as required" time="0.0665051">
+        </testcase>
+        <testcase classname="src/app/components/login/login.spec.ts" name="Login &gt; form validation &gt; should accept valid password" time="0.0618319">
+        </testcase>
+        <testcase classname="src/app/components/login/login.spec.ts" name="Login &gt; onSubmit &gt; should not call service when form is invalid" time="0.0918535">
+        </testcase>
+        <testcase classname="src/app/components/login/login.spec.ts" name="Login &gt; onSubmit &gt; should call authService.login and navigate on success" time="0.0694545">
+        </testcase>
+        <testcase classname="src/app/components/login/login.spec.ts" name="Login &gt; onSubmit &gt; should show error message on failure" time="0.0666213">
+        </testcase>
+        <testcase classname="src/app/components/login/login.spec.ts" name="Login &gt; onSubmit &gt; should show default error message when no error detail" time="0.0534229">
+        </testcase>
+        <testcase classname="src/app/components/login/login.spec.ts" name="Login &gt; onSubmit &gt; should set loading state" time="0.0625427">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/components/register/register.spec.ts" timestamp="2026-05-28T17:06:20.903Z" hostname="Jeremiasz" tests="11" failures="0" errors="0" skipped="0" time="1.1968932">
+        <testcase classname="src/app/components/register/register.spec.ts" name="Register &gt; form validation &gt; should be invalid when empty" time="0.3683894">
+        </testcase>
+        <testcase classname="src/app/components/register/register.spec.ts" name="Register &gt; form validation &gt; should validate firstName as required" time="0.1274705">
+        </testcase>
+        <testcase classname="src/app/components/register/register.spec.ts" name="Register &gt; form validation &gt; should validate lastName as required" time="0.099156">
+        </testcase>
+        <testcase classname="src/app/components/register/register.spec.ts" name="Register &gt; form validation &gt; should validate email as required and check format" time="0.0631815">
+        </testcase>
+        <testcase classname="src/app/components/register/register.spec.ts" name="Register &gt; form validation &gt; should validate password minLength of 8" time="0.0591226">
+        </testcase>
+        <testcase classname="src/app/components/register/register.spec.ts" name="Register &gt; form validation &gt; should be valid with all fields filled correctly" time="0.1335775">
+        </testcase>
+        <testcase classname="src/app/components/register/register.spec.ts" name="Register &gt; onSubmit &gt; should not call service when form is invalid" time="0.0540301">
+        </testcase>
+        <testcase classname="src/app/components/register/register.spec.ts" name="Register &gt; onSubmit &gt; should call authService.register, show success, and navigate after 2s" time="0.1122865">
+        </testcase>
+        <testcase classname="src/app/components/register/register.spec.ts" name="Register &gt; onSubmit &gt; should show error message on failure" time="0.0669472">
+        </testcase>
+        <testcase classname="src/app/components/register/register.spec.ts" name="Register &gt; onSubmit &gt; should show default error message when no error detail" time="0.0569091">
+        </testcase>
+        <testcase classname="src/app/components/register/register.spec.ts" name="Register &gt; onSubmit &gt; should set loading state during submission" time="0.0533596">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/components/books/book-detail/book-detail.spec.ts" timestamp="2026-05-28T17:06:20.905Z" hostname="Jeremiasz" tests="11" failures="0" errors="0" skipped="0" time="0.3043391">
+        <testcase classname="src/app/components/books/book-detail/book-detail.spec.ts" name="BookDetail &gt; ngOnInit &gt; should load book when id is valid" time="0.096604">
+        </testcase>
+        <testcase classname="src/app/components/books/book-detail/book-detail.spec.ts" name="BookDetail &gt; ngOnInit &gt; should set error when id is NaN" time="0.0300906">
+        </testcase>
+        <testcase classname="src/app/components/books/book-detail/book-detail.spec.ts" name="BookDetail &gt; ngOnInit &gt; should set error when book not found" time="0.0583574">
+        </testcase>
+        <testcase classname="src/app/components/books/book-detail/book-detail.spec.ts" name="BookDetail &gt; getCopyStatusLabel &gt; should return Polish labels" time="0.0121575">
+        </testcase>
+        <testcase classname="src/app/components/books/book-detail/book-detail.spec.ts" name="BookDetail &gt; getCopyStatusLabel &gt; should return original string for unknown status" time="0.0089701">
+        </testcase>
+        <testcase classname="src/app/components/books/book-detail/book-detail.spec.ts" name="BookDetail &gt; getCopyStatusSeverity &gt; should return correct severity" time="0.0136297">
+        </testcase>
+        <testcase classname="src/app/components/books/book-detail/book-detail.spec.ts" name="BookDetail &gt; getCopyStatusSeverity &gt; should return info for unknown status" time="0.0226115">
+        </testcase>
+        <testcase classname="src/app/components/books/book-detail/book-detail.spec.ts" name="BookDetail &gt; availableCopiesCount &gt; should count available copies" time="0.0124918">
+        </testcase>
+        <testcase classname="src/app/components/books/book-detail/book-detail.spec.ts" name="BookDetail &gt; availableCopiesCount &gt; should return 0 when book is null" time="0.0181888">
+        </testcase>
+        <testcase classname="src/app/components/books/book-detail/book-detail.spec.ts" name="BookDetail &gt; reserve &gt; should call createReservation" time="0.016579">
+        </testcase>
+        <testcase classname="src/app/components/books/book-detail/book-detail.spec.ts" name="BookDetail &gt; reserve &gt; should not call service when book is null" time="0.0132898">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/components/books/book-form/book-form.spec.ts" timestamp="2026-05-28T17:06:20.908Z" hostname="Jeremiasz" tests="20" failures="0" errors="0" skipped="0" time="2.0627933">
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; ngOnInit &gt; should set isEdit to false when no id param" time="0.5015987">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; ngOnInit &gt; should load categories dictionary" time="0.2440919">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; ngOnInit &gt; should set isEdit to true and load book when id param present" time="0.1240939">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; ngOnInit &gt; should set error when book not found in edit mode" time="0.147817">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; form validation &gt; should be invalid when empty" time="0.0735015">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; form validation &gt; should validate required fields" time="0.0669784">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; form validation &gt; should be valid with all required fields" time="0.0640962">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; filterCategories &gt; should filter category suggestions by query" time="0.1360481">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; filterCategories &gt; should show all category suggestions for empty query" time="0.1453334">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; inventory numbers &gt; should add inventory number" time="0.0935244">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; inventory numbers &gt; should not add empty inventory number" time="0.0864884">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; inventory numbers &gt; should remove inventory number by index" time="0.0692803">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; onSubmit &gt; should call createBook in create mode" time="0.0520459">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; onSubmit &gt; should call updateBook in edit mode" time="0.0614219">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; onSubmit &gt; should include inventory numbers when present" time="0.0491761">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; onSubmit &gt; should allow submitting category outside dictionary" time="0.0413456">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; onSubmit &gt; should set error on failure" time="0.0445106">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; onSubmit &gt; should not submit when form invalid" time="0.0434362">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; getCopyStatusLabel and getCopyStatusSeverity &gt; should map status to Polish labels" time="0.0071503">
+        </testcase>
+        <testcase classname="src/app/components/books/book-form/book-form.spec.ts" name="BookForm &gt; getCopyStatusLabel and getCopyStatusSeverity &gt; should map status to severity" time="0.0077884">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/components/books/book-list/book-list.spec.ts" timestamp="2026-05-28T17:06:20.912Z" hostname="Jeremiasz" tests="9" failures="0" errors="0" skipped="0" time="0.5208082">
+        <testcase classname="src/app/components/books/book-list/book-list.spec.ts" name="BookList &gt; loadBooks &gt; should load books with filters" time="0.162414">
+        </testcase>
+        <testcase classname="src/app/components/books/book-list/book-list.spec.ts" name="BookList &gt; loadCategories &gt; should load categories dictionary" time="0.0533497">
+        </testcase>
+        <testcase classname="src/app/components/books/book-list/book-list.spec.ts" name="BookList &gt; filters &gt; should reset to first page and reload when filters change" time="0.0423939">
+        </testcase>
+        <testcase classname="src/app/components/books/book-list/book-list.spec.ts" name="BookList &gt; filters &gt; should clear filters and reload" time="0.0473265">
+        </testcase>
+        <testcase classname="src/app/components/books/book-list/book-list.spec.ts" name="BookList &gt; onPageChange &gt; should update page and pageSize and reload" time="0.0473228">
+        </testcase>
+        <testcase classname="src/app/components/books/book-list/book-list.spec.ts" name="BookList &gt; onPageChange &gt; should compute page 1 correctly" time="0.0353011">
+        </testcase>
+        <testcase classname="src/app/components/books/book-list/book-list.spec.ts" name="BookList &gt; viewBook &gt; should navigate to book detail" time="0.0414452">
+        </testcase>
+        <testcase classname="src/app/components/books/book-list/book-list.spec.ts" name="BookList &gt; editBook &gt; should navigate to book edit with stopPropagation" time="0.0475309">
+        </testcase>
+        <testcase classname="src/app/components/books/book-list/book-list.spec.ts" name="BookList &gt; isLibrarianOrAdmin &gt; should delegate to authService" time="0.0410433">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/components/loans/my-loans/my-loans.spec.ts" timestamp="2026-05-28T17:06:20.914Z" hostname="Jeremiasz" tests="6" failures="0" errors="0" skipped="0" time="0.0738627">
+        <testcase classname="src/app/components/loans/my-loans/my-loans.spec.ts" name="MyLoans &gt; loadLoans &gt; should load loans from service" time="0.0107058">
+        </testcase>
+        <testcase classname="src/app/components/loans/my-loans/my-loans.spec.ts" name="MyLoans &gt; loadLoans &gt; should handle error gracefully" time="0.0081474">
+        </testcase>
+        <testcase classname="src/app/components/loans/my-loans/my-loans.spec.ts" name="MyLoans &gt; getStatusLabel &gt; should return Polish labels" time="0.0111057">
+        </testcase>
+        <testcase classname="src/app/components/loans/my-loans/my-loans.spec.ts" name="MyLoans &gt; getStatusLabel &gt; should return original string for unknown status" time="0.0139497">
+        </testcase>
+        <testcase classname="src/app/components/loans/my-loans/my-loans.spec.ts" name="MyLoans &gt; getStatusSeverity &gt; should return correct severity" time="0.0216063">
+        </testcase>
+        <testcase classname="src/app/components/loans/my-loans/my-loans.spec.ts" name="MyLoans &gt; getStatusSeverity &gt; should return secondary for unknown status" time="0.0080528">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/components/loans/all-loans/all-loans.spec.ts" timestamp="2026-05-28T17:06:20.915Z" hostname="Jeremiasz" tests="8" failures="0" errors="0" skipped="0" time="0.2863044">
+        <testcase classname="src/app/components/loans/all-loans/all-loans.spec.ts" name="AllLoans &gt; loadLoans &gt; should load all loans from service" time="0.0630114">
+        </testcase>
+        <testcase classname="src/app/components/loans/all-loans/all-loans.spec.ts" name="AllLoans &gt; loadLoans &gt; should handle error gracefully" time="0.0337296">
+        </testcase>
+        <testcase classname="src/app/components/loans/all-loans/all-loans.spec.ts" name="AllLoans &gt; filters &gt; should pass filters to service" time="0.0288852">
+        </testcase>
+        <testcase classname="src/app/components/loans/all-loans/all-loans.spec.ts" name="AllLoans &gt; filters &gt; should return reader full name" time="0.0402558">
+        </testcase>
+        <testcase classname="src/app/components/loans/all-loans/all-loans.spec.ts" name="AllLoans &gt; getStatusLabel &gt; should return Polish labels" time="0.0271396">
+        </testcase>
+        <testcase classname="src/app/components/loans/all-loans/all-loans.spec.ts" name="AllLoans &gt; getStatusLabel &gt; should return original string for unknown status" time="0.0434407">
+        </testcase>
+        <testcase classname="src/app/components/loans/all-loans/all-loans.spec.ts" name="AllLoans &gt; getStatusSeverity &gt; should return correct severity" time="0.0218313">
+        </testcase>
+        <testcase classname="src/app/components/loans/all-loans/all-loans.spec.ts" name="AllLoans &gt; getStatusSeverity &gt; should return secondary for unknown status" time="0.0263584">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/components/reservations/all-reservations/all-reservations.spec.ts" timestamp="2026-05-28T17:06:20.918Z" hostname="Jeremiasz" tests="11" failures="0" errors="0" skipped="0" time="0.5991185">
+        <testcase classname="src/app/components/reservations/all-reservations/all-reservations.spec.ts" name="AllReservations &gt; loadReservations &gt; should load all reservations from service" time="0.2655741">
+        </testcase>
+        <testcase classname="src/app/components/reservations/all-reservations/all-reservations.spec.ts" name="AllReservations &gt; loadReservations &gt; should handle error gracefully" time="0.0630302">
+        </testcase>
+        <testcase classname="src/app/components/reservations/all-reservations/all-reservations.spec.ts" name="AllReservations &gt; filters &gt; should reset to first page and reload when filters change" time="0.0399727">
+        </testcase>
+        <testcase classname="src/app/components/reservations/all-reservations/all-reservations.spec.ts" name="AllReservations &gt; filters &gt; should clear filters and reload" time="0.0263275">
+        </testcase>
+        <testcase classname="src/app/components/reservations/all-reservations/all-reservations.spec.ts" name="AllReservations &gt; filters &gt; should return reader full name" time="0.0202483">
+        </testcase>
+        <testcase classname="src/app/components/reservations/all-reservations/all-reservations.spec.ts" name="AllReservations &gt; getStatusLabel &gt; should return Polish labels" time="0.0344031">
+        </testcase>
+        <testcase classname="src/app/components/reservations/all-reservations/all-reservations.spec.ts" name="AllReservations &gt; getStatusLabel &gt; should return original string for unknown status" time="0.0232832">
+        </testcase>
+        <testcase classname="src/app/components/reservations/all-reservations/all-reservations.spec.ts" name="AllReservations &gt; getStatusSeverity &gt; should return correct severity" time="0.0235182">
+        </testcase>
+        <testcase classname="src/app/components/reservations/all-reservations/all-reservations.spec.ts" name="AllReservations &gt; getStatusSeverity &gt; should return secondary for unknown status" time="0.0460241">
+        </testcase>
+        <testcase classname="src/app/components/reservations/all-reservations/all-reservations.spec.ts" name="AllReservations &gt; fulfillReservation &gt; should call fulfillReservation and reload" time="0.0286019">
+        </testcase>
+        <testcase classname="src/app/components/reservations/all-reservations/all-reservations.spec.ts" name="AllReservations &gt; fulfillReservation &gt; should handle error gracefully" time="0.0255602">
+        </testcase>
+    </testsuite>
+    <testsuite name="src/app/components/reservations/my-reservations/my-reservations.spec.ts" timestamp="2026-05-28T17:06:20.920Z" hostname="Jeremiasz" tests="6" failures="0" errors="0" skipped="0" time="0.0614953">
+        <testcase classname="src/app/components/reservations/my-reservations/my-reservations.spec.ts" name="MyReservations &gt; loadReservations &gt; should load reservations from service" time="0.017926">
+        </testcase>
+        <testcase classname="src/app/components/reservations/my-reservations/my-reservations.spec.ts" name="MyReservations &gt; loadReservations &gt; should handle error gracefully" time="0.0116519">
+        </testcase>
+        <testcase classname="src/app/components/reservations/my-reservations/my-reservations.spec.ts" name="MyReservations &gt; getStatusLabel &gt; should return Polish labels" time="0.0084849">
+        </testcase>
+        <testcase classname="src/app/components/reservations/my-reservations/my-reservations.spec.ts" name="MyReservations &gt; getStatusLabel &gt; should return original string for unknown status" time="0.0078071">
+        </testcase>
+        <testcase classname="src/app/components/reservations/my-reservations/my-reservations.spec.ts" name="MyReservations &gt; getStatusSeverity &gt; should return correct severity" time="0.0077912">
+        </testcase>
+        <testcase classname="src/app/components/reservations/my-reservations/my-reservations.spec.ts" name="MyReservations &gt; getStatusSeverity &gt; should return secondary for unknown status" time="0.0075364">
+        </testcase>
+    </testsuite>
+</testsuites>

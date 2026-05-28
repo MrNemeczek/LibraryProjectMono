@@ -1,0 +1,59 @@
+<div class="login-page">
+  <p-card header="Logowanie" class="login-card">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      @if (error) {
+        <p-message severity="error" [text]="error" styleClass="mb-3 w-full" />
+      }
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          pInputText
+          type="email"
+          formControlName="email"
+          class="w-full"
+          [class.ng-invalid]="email.invalid && (email.dirty || email.touched)"
+          placeholder="jan@example.com"
+        />
+        @if (email.invalid && (email.dirty || email.touched)) {
+          <small class="p-error">
+            @if (email.errors?.['required']) { Email jest wymagany. }
+            @if (email.errors?.['email']) { Podaj prawidłowy adres email. }
+          </small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="password">Hasło</label>
+        <p-password
+          id="password"
+          formControlName="password"
+          [feedback]="false"
+          class="w-full"
+          [styleClass]="'w-full'"
+          [inputStyleClass]="'w-full'"
+          [class.ng-invalid]="password.invalid && (password.dirty || password.touched)"
+            placeholder="Twoje hasło"
+        />
+        @if (password.invalid && (password.dirty || password.touched)) {
+          <small class="p-error"> Hasło jest wymagane. </small>
+        }
+      </div>
+
+      <p-button
+        type="submit"
+        [loading]="loading"
+        [disabled]="form.invalid"
+        styleClass="w-full mt-2"
+      >
+        Zaloguj się
+      </p-button>
+    </form>
+
+    <div class="register-link">
+      Nie masz konta?
+      <a routerLink="/register">Zarejestruj się</a>
+    </div>
+  </p-card>
+</div>

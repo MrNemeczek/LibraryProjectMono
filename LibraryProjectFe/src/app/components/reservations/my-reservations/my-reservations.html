@@ -1,0 +1,59 @@
+<p-toast />
+<p-confirmdialog />
+
+<div class="reservations-page">
+  <h1>Moje rezerwacje</h1>
+
+  <p-table
+    [value]="reservations"
+    [paginator]="true"
+    [rows]="pageSize"
+    [totalRecords]="totalCount"
+    (onPage)="onPageChange($event)"
+    [loading]="loading"
+    [rowsPerPageOptions]="[10, 20, 50]"
+    dataKey="id"
+    styleClass="p-datatable-striped"
+  >
+    <ng-template #header>
+      <tr>
+        <th>ID rezerwacji</th>
+        <th>Książka</th>
+        <th>Data rezerwacji</th>
+        <th>Termin odbioru</th>
+        <th>Status</th>
+        <th style="width: 100px">Akcje</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-reservation>
+      <tr>
+        <td>#{{ reservation.id }}</td>
+        <td>{{ reservation.bookTitle }}</td>
+        <td>{{ reservation.reservationDate }}</td>
+        <td>{{ reservation.pickupDeadline || '-' }}</td>
+        <td>
+          <p-tag
+            [value]="getStatusLabel(reservation.status)"
+            [severity]="getStatusSeverity(reservation.status)"
+          />
+        </td>
+        <td>
+          @if (reservation.status === 'Active') {
+            <p-button
+              icon="pi pi-times"
+              severity="danger"
+              size="small"
+              (click)="confirmCancel(reservation.id)"
+              pTooltip="Anuluj rezerwację"
+            />
+          }
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="6" class="text-center">Brak rezerwacji.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

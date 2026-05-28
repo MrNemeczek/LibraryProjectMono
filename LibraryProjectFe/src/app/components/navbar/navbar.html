@@ -1,0 +1,104 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <a class="navbar-brand" routerLink="/books" (click)="closeMenu()">
+      <i class="pi pi-book"></i>
+      Biblioteka
+    </a>
+
+    <button class="navbar-toggle" (click)="toggleMenu()" aria-label="Menu">
+      <i [ngClass]="menuOpen ? 'pi pi-times' : 'pi pi-bars'"></i>
+    </button>
+
+    <div class="navbar-menu" [class.open]="menuOpen">
+      <div class="navbar-links">
+        <a
+          class="nav-link"
+          routerLink="/books"
+          routerLinkActive="active"
+          (click)="closeMenu()"
+        >
+          <i class="pi pi-book"></i>
+          Książki
+        </a>
+
+        @if (isLoggedIn) {
+          <a
+            class="nav-link"
+            routerLink="/reservations"
+            routerLinkActive="active"
+            (click)="closeMenu()"
+          >
+            <i class="pi pi-calendar"></i>
+            Moje rezerwacje
+          </a>
+
+          <a
+            class="nav-link"
+            routerLink="/loans"
+            routerLinkActive="active"
+            (click)="closeMenu()"
+          >
+            <i class="pi pi-undo"></i>
+            Moje wypożyczenia
+          </a>
+        }
+
+        @if (isLibrarianOrAdmin) {
+          <div class="nav-divider"></div>
+
+          <span class="nav-section-title">Zarządzanie</span>
+
+          <a
+            class="nav-link"
+            routerLink="/reservations/all"
+            routerLinkActive="active"
+            (click)="closeMenu()"
+          >
+            <i class="pi pi-list"></i>
+            Wszystkie rezerwacje
+          </a>
+
+          <a
+            class="nav-link"
+            routerLink="/loans/all"
+            routerLinkActive="active"
+            (click)="closeMenu()"
+          >
+            <i class="pi pi-list"></i>
+            Wszystkie wypożyczenia
+          </a>
+        }
+      </div>
+
+      <div class="navbar-actions">
+        @if (isLoggedIn) {
+          <span class="user-info">
+            <i class="pi pi-user"></i>
+            {{ userName }}
+          </span>
+          <p-button severity="secondary" (click)="logout()">
+            <i class="pi pi-sign-out"></i>
+            Wyloguj
+          </p-button>
+        } @else {
+          <p-button
+            severity="secondary"
+            routerLink="/login"
+            (click)="closeMenu()"
+          >
+            <i class="pi pi-sign-in"></i>
+            Zaloguj
+          </p-button>
+          <p-button
+            severity="info"
+            routerLink="/register"
+            (click)="closeMenu()"
+          >
+            <i class="pi pi-user-plus"></i>
+            Rejestracja
+          </p-button>
+        }
+      </div>
+    </div>
+  </div>
+</nav>

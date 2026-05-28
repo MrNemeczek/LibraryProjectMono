@@ -1,0 +1,52 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: libraryproject-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "LibraryProject123!"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    restart: unless-stopped
+    healthcheck:
+      test: /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "LibraryProject123!" -C -Q "SELECT 1" || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  backend:
+    build:
+      context: ./LibraryProjectBe
+      dockerfile: Dockerfile
+    container_name: libraryproject-backend
+    ports:
+      - "5156:5156"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Docker"
+      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=LibraryProjectDb;User Id=sa;Password=LibraryProject123!;TrustServerCertificate=True"
+      Jwt__Secret: "change-this-local-development-secret-at-least-32-chars"
+      Jwt__Issuer: "LibraryProject.Api"
+      Jwt__Audience: "LibraryProject.Client"
+      Jwt__ExpiresMinutes: "120"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./LibraryProjectFe
+      dockerfile: Dockerfile
+    container_name: libraryproject-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  sqlserver_data:

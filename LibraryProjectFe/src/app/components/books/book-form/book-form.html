@@ -1,0 +1,164 @@
+<div class="book-form-page">
+  <a routerLink="/books" class="back-link">
+    <i class="pi pi-arrow-left"></i>
+    Powrót do listy
+  </a>
+
+  <p-card [header]="isEdit ? 'Edytuj książkę' : 'Dodaj nową książkę'">
+    @if (loading) {
+      <div class="loading-text">Ładowanie...</div>
+    } @else {
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        @if (error) {
+          <p-message severity="error" [text]="error" styleClass="mb-3 w-full" />
+        }
+
+        <div class="field">
+          <label for="title">Tytuł</label>
+          <input
+            id="title"
+            pInputText
+            type="text"
+            formControlName="title"
+            class="w-full"
+            placeholder="Tytuł książki"
+          />
+          @if (title.invalid && (title.dirty || title.touched)) {
+            <small class="p-error"> Tytuł jest wymagany (max 200 znaków). </small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="author">Autor</label>
+          <input
+            id="author"
+            pInputText
+            type="text"
+            formControlName="author"
+            class="w-full"
+            placeholder="Imię i nazwisko autora"
+          />
+          @if (author.invalid && (author.dirty || author.touched)) {
+            <small class="p-error"> Autor jest wymagany (max 200 znaków). </small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="isbn">ISBN</label>
+          <input
+            id="isbn"
+            pInputText
+            type="text"
+            formControlName="isbn"
+            class="w-full"
+            placeholder="978-xxxxxxxxxx"
+          />
+          @if (isbn.invalid && (isbn.dirty || isbn.touched)) {
+            <small class="p-error"> ISBN jest wymagany (max 20 znaków). </small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="categoryName">Kategoria</label>
+          <p-autocomplete
+            inputId="categoryName"
+            formControlName="categoryName"
+            [suggestions]="filteredCategoryNames"
+            (completeMethod)="filterCategories($event)"
+            [dropdown]="true"
+            [forceSelection]="false"
+            [completeOnFocus]="true"
+            [showClear]="true"
+            styleClass="w-full"
+            inputStyleClass="w-full"
+            placeholder="Nazwa kategorii"
+          />
+          @if (categoryName.invalid && (categoryName.dirty || categoryName.touched)) {
+            <small class="p-error"> Kategoria jest wymagana (max 100 znaków). </small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="description">Opis (opcjonalnie)</label>
+          <textarea
+            id="description"
+            pTextarea
+            formControlName="description"
+            class="w-full"
+            rows="4"
+            placeholder="Krótki opis książki..."
+          ></textarea>
+        </div>
+
+        <div class="field">
+          <label>Numery inwentarzowe (opcjonalnie)</label>
+
+          @if (isEdit && existingCopies.length > 0) {
+            <div class="existing-copies">
+              <span class="subsection-label">Istniejące egzemplarze</span>
+              <div class="copy-grid">
+                @for (copy of existingCopies; track copy.id) {
+                  <div class="copy-chip">
+                    <code>{{ copy.inventoryNumber }}</code>
+                    <p-tag
+                      [value]="getCopyStatusLabel(copy.status)"
+                      [severity]="getCopyStatusSeverity(copy.status)"
+                      styleClass="copy-status-tag"
+                    />
+                  </div>
+                }
+              </div>
+            </div>
+          }
+
+          <div class="inventory-row">
+            <input
+              pInputText
+              type="text"
+              [formControl]="newInventoryControl"
+              placeholder="Numer inwentarzowy"
+              class="inventory-input"
+              (keydown.enter)="$event.preventDefault(); addInventoryNumber()"
+            />
+            <p-button
+              icon="pi pi-plus"
+              severity="secondary"
+              (click)="addInventoryNumber()"
+              [disabled]="!newInventoryControl.value.trim() || newInventoryControl.invalid"
+            />
+          </div>
+          @if (newInventoryControl.invalid && (newInventoryControl.dirty || newInventoryControl.touched)) {
+            <small class="p-error"> Numer inwentarzowy jest wymagany (max 50 znaków). </small>
+          }
+
+          @if (inventoryNumbers.length > 0) {
+            <div class="added-inventory-list">
+              <span class="subsection-label">Nowe egzemplarze do dodania</span>
+              @for (inv of inventoryNumbers; track $index) {
+                <div class="inventory-item">
+                  <code class="inventory-item-value">{{ inv }}</code>
+                  <p-button
+                    icon="pi pi-times"
+                    severity="danger"
+                    size="small"
+                    (click)="removeInventoryNumber($index)"
+                  />
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="form-actions">
+          <p-button severity="secondary" routerLink="/books" type="button" label="Anuluj" />
+          <p-button
+            type="submit"
+            [loading]="submitting"
+            [disabled]="form.invalid"
+            [label]="isEdit ? 'Zapisz zmiany' : 'Dodaj książkę'"
+          />
+        </div>
+      </form>
+    }
+  </p-card>
+</div>

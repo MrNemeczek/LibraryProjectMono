@@ -1,0 +1,148 @@
+.book-detail-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--p-primary-color);
+  text-decoration: none;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.loading-text {
+  text-align: center;
+  padding: 2rem;
+  color: var(--p-text-muted-color);
+}
+
+.book-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+}
+
+.book-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.book-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--p-text-muted-color);
+  font-weight: 500;
+}
+
+.info-value {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.description-section {
+  border-top: 1px solid var(--p-content-border-color);
+  padding-top: 1.5rem;
+
+  h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--p-text-muted-color);
+    white-space: pre-wrap;
+  }
+}
+
+.copies-section {
+  border-top: 1px solid var(--p-content-border-color);
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+
+  h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+.copies-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.copy-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--p-surface-100);
+  border: 1px solid var(--p-content-border-color);
+  border-radius: var(--p-border-radius-md);
+}
+
+.copy-number {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.reserve-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.copies-hint {
+  font-size: 0.75rem;
+  color: var(--p-text-muted-color);
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .book-detail-header {
+    flex-direction: column;
+  }
+
+  .book-actions {
+    width: 100%;
+
+    button {
+      flex: 1;
+    }
+  }
+}

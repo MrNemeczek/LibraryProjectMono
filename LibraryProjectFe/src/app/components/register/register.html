@@ -1,0 +1,100 @@
+<div class="register-page">
+  <p-card header="Rejestracja" class="register-card">
+    @if (success) {
+      <p-message
+        severity="success"
+        text="Konto utworzone! Zaraz zostaniesz przekierowany do logowania."
+        styleClass="w-full"
+      />
+    } @else {
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        @if (error) {
+          <p-message severity="error" [text]="error" styleClass="mb-3 w-full" />
+        }
+
+        <div class="field">
+          <label for="firstName">Imię</label>
+          <input
+            id="firstName"
+            pInputText
+            type="text"
+            formControlName="firstName"
+            class="w-full"
+            placeholder="Jan"
+          />
+          @if (firstName.invalid && (firstName.dirty || firstName.touched)) {
+            <small class="p-error"> Imię jest wymagane. </small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="lastName">Nazwisko</label>
+          <input
+            id="lastName"
+            pInputText
+            type="text"
+            formControlName="lastName"
+            class="w-full"
+            placeholder="Kowalski"
+          />
+          @if (lastName.invalid && (lastName.dirty || lastName.touched)) {
+            <small class="p-error"> Nazwisko jest wymagane. </small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            pInputText
+            type="email"
+            formControlName="email"
+            class="w-full"
+            placeholder="jan@example.com"
+          />
+          @if (email.invalid && (email.dirty || email.touched)) {
+            <small class="p-error">
+              @if (email.errors?.['required']) { Email jest wymagany. }
+              @if (email.errors?.['email']) { Podaj prawidłowy adres email. }
+            </small>
+          }
+        </div>
+
+        <div class="field">
+          <label for="password">Hasło</label>
+          <p-password
+            id="password"
+            formControlName="password"
+            [feedback]="true"
+            class="w-full"
+            [styleClass]="'w-full'"
+            [inputStyleClass]="'w-full'"
+            placeholder="Minimum 8 znaków"
+          />
+          @if (password.invalid && (password.dirty || password.touched)) {
+            <small class="p-error">
+              @if (password.errors?.['required']) { Hasło jest wymagane. }
+              @if (password.errors?.['minlength']) {
+                Hasło musi mieć minimum 8 znaków.
+              }
+            </small>
+          }
+        </div>
+
+        <p-button
+          type="submit"
+          [loading]="loading"
+          [disabled]="form.invalid"
+          styleClass="w-full mt-2"
+        >
+          Zarejestruj się
+        </p-button>
+      </form>
+    }
+
+    <div class="login-link">
+      Masz już konto?
+      <a routerLink="/login">Zaloguj się</a>
+    </div>
+  </p-card>
+</div>
